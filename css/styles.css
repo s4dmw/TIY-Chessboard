@@ -35,16 +35,16 @@ ul {
 
 li {
   margin-right: 0;
-  background-color: lightgray;
+  background-color: gray;
   border: solid black 1px;
   height: 5em;
   width: auto;
 }
 
 ul:nth-child(odd) li:nth-child(odd) {
-  background-color: gray;
+  background-color: lightgray;
 }
 
 ul:nth-child(even) li:nth-child(even) {
-  background-color: gray;
+  background-color: lightgray;
 }
