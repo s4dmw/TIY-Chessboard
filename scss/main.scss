@@ -94,58 +94,49 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-   body {
-     color: black;
-     margin-left: 5%;
-     margin-right: 5%;
-     margin-bottom: 5%;
-     margin-top: 5%;
-   }
+body {
+   color: black;
+   margin-left: 5%;
+   margin-right: 5%;
+   margin-bottom: 5%;
+   margin-top: 5%;
+}
 
-   section {
-     background-color: cornflowerblue;
-     margin-left: 0%;
-     margin-top: 0%;
-     margin-right: 0%;
-     margin-top: 0%;
-   }
+header {
+  text-align: center;
+}
 
-   /*ul.labels {
-     list-style-type: none;
-     padding-left: 0;
-     float: left;
-     display: inline-block;
-   }*/
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border-spacing: 0;
+  border-collapse: separate;
+}
 
-   ul {
-     list-style-type: none;
-     padding-left: 0;
-     width: 12.5%;
-     height: 12.5%;
-     float: left;
-     display: inline-block;
-     /*border: solid black 1px;*/
-     list-style-type: none;
-     padding-left: 0;
-     }
-
-   li {
-     margin-right: 0;
-     background-color: gray;
-     border: solid black 1px;
-     height: 5em;
-     width: auto;
-   }
-
-   ul:nth-child(odd) li:nth-child(odd) {
-     background-color: lightgray;
-   }
-
-   ul:nth-child(even) li:nth-child(even) {
-     background-color: lightgray;
-   }
+thead {
+  text-align: center;
+}
 
 
+tr.board td {
+  background-color: lightgray;
+  height: 60pt;
+  width: 60pt;
+  // border: solid 1px;
+}
+
+tr.board:nth-child(odd) td:nth-child(odd) {
+  background-color: gray;
+}
+
+tr.board:nth-child(even) td:nth-child(even) {
+  background-color: gray;
+}
+
+section.buttons {
+  margin-top: 10pt;
+  text-align: center;
+}
 
 
 
