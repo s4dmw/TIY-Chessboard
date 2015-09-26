@@ -140,9 +140,50 @@ section.buttons {
 
 
 
+//assign pieces to board positions by their class names
 
+.black_pawn:before {
+  content: "\265F";
+}
+.black_rook:before {
+  content: "\265C";
+}
+.black_night:before {
+  content: "\265E";
+}
+.black_bishop:before {
+  content: "\265D";
+}
+.black_queen:before {
+  content: "\265B";
+}
+.black_king:before {
+  content: "\265A";
+}
+.white_pawn:before {
+  content: "\2659";
+}
+.white_rook:before {
+  content: "\2656";
+}
+.white_night:before {
+  content: "\2658";
+}
+.white_bishop:before {
+  content: "\2657";
+}
+.white_queen:before {
+  content: "\2655";
+}
+.white_king:before {
+  content: "\2654";
+}
 
-
+//set size/position of pieces
+::before {
+  font-size: 40pt;
+  margin-left: 10pt;
+}
 
 
 
