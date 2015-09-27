@@ -19,8 +19,8 @@
 
 
   // Controller for "next move"...
-  $("#forward").on('click', function(){
-    console.log("clicked step forward button");
+  $("#next").on('click', function(){
+    // console.log("clicked next move button");
     game.next();
     // TODO: Tell the Model -- `game` -- to advance to the next move...
     // TODO: Tell the View -- `.chessboard` -- to update the position of the pieces based on `game.board()`
@@ -28,7 +28,7 @@
 
   // Controller for "previous move"...
   $("#back").on('click', function(){
-    console.log("clicked on the step back button");
+    // console.log("clicked on the prev move button");
     game.prev();
     // TODO: Tell the Model -- `game` -- to advance to the previous move...
     // TODO: Tell the View -- `.chessboard` -- to update the position of the pieces based on `game.board()`

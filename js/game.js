@@ -21,7 +21,12 @@
 
    //short hand of opening moves...will start with a longer hand version in an object
   // var moves = [d4, nf6, e4, e6, g3, d5, bg2, be7]; // END moves
-    var moves = [["wp", "d2", "d4"], ["bk", "g7", "f6"]];
+    var moves = [["wp", "d2", "d4"], ["bn", "g8", "f6"]];
+    var moveCounter = 0; //counter to keep track of moves
+    var move = []; //place holder for specific moves
+    var piece = ""; //place holder for game pieces
+    var moveFrom = ""; //place holder for current piece location
+    var moveTo = ""; //place holder for next piece location
 
 
   // var current; TODO: do we need this?
@@ -56,7 +61,26 @@
      * @todo Make this work!
      */
     next: function(){
-      console.log("next function called"); //tracer bullet
+      // console.log("next function called"); //tracer bullet
+      // console.log("initial move count " + moveCounter);
+      if (moveCounter + 1 > moves.length){
+        return;
+      }
+      //get next move from array of moves
+      // console.log(moves[moveCounter]); //tracer bullet
+      // console.log("move counter = ", moveCounter); //tracer bullet
+      move = moves[moveCounter];
+      piece = move[0];
+      moveFrom = "#" + move[1];
+      moveTo = "#" + move[2];
+      // console.log(piece, moveFrom, moveTo); //tracer bullet
+      //send next move to applyMove function
+      game.applyMove(piece, moveFrom, moveTo);
+      moveCounter++;
+      // console.log("final move counter " + moveCounter);
+      //increase moveCounter by 1
+
+
       // return this;
     },
     /**
@@ -66,8 +90,20 @@
      * @todo Make this work!
      */
     prev: function(){
-      console.log("prev function called");
-      // return this;
+      // console.log("prev function called");
+      if(moveCounter + 1 < moves.length){
+        return;
+      }
+      //decrease moveCounter by 1 to call the previous move
+      moveCounter--
+      //reverse move order
+      move = moves[moveCounter];
+      piece = move[0];
+      moveFrom = "#" + move[2];
+      moveTo = "#" + move[1];
+      //send the move to applyMove function
+      game.applyMove(piece, moveFrom, moveTo);
+
     },
     /**
      * Advance the internal game board to the last move.
@@ -108,8 +144,15 @@
      *
      * @todo Fill me in! ...and remove this comment.
      */
-    applyMove: function(from, to){
-      // You should write something in here...
+    applyMove: function(piece, from, to){
+      // console.log("applyMove function called"); //tracer bullet
+      // console.log(piece);
+      // console.log(from);
+      // console.log(to);
+      //remove piece from the "from" spot
+      $(from).removeClass();
+      //add piece to the "to" spot
+      $(to).addClass(piece);
     }, // END applyMove
   }; // END game
 
