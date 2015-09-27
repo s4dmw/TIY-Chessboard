@@ -51,7 +51,8 @@
 
   //controller for "play/pause"
   $("#play").on('click', function(){
-    console.log("clicked on the play/pause button");
+    // console.log("clicked on the play/pause button");
+    game.play();
   });
 
 

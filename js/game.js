@@ -22,7 +22,7 @@
    //short hand of opening moves...will start with a longer hand version in an object
   // var moves = [d4, nf6, e4, e6, g3, d5, bg2, be7]; // END moves
     var moves = [["wp", "d2", "d4"], ["bn", "g8", "f6"], ["wp", "c2", "c4"], ["bp", "e7", "e6"],
-  ["wp", "g2", "g3"], ["bp", "d7", "d5"], ["wb", "f1", "g2"], ["bb", "f8", "e7"]];
+  ["wp", "g2", "g3"], ["bp", "d7", "d5"], ["wb", "f1", "g2"], ["bb", "f8", "e7"], ["wn", "h7", "f3"]];
     var moveCounter = 0; //counter to keep track of moves
     var move = []; //place holder for specific moves
     var piece = ""; //place holder for game pieces
@@ -94,7 +94,8 @@
      */
     prev: function(){
       // console.log("prev function called");
-      console.log("intial " + moveCounter);
+      // console.log("intial " + moveCounter);
+      //if the move counter is not back to zero, reverse the move
       if(moveCounter > 0){
         //decrease moveCounter by 1 to call the previous move
         moveCounter--
@@ -105,7 +106,7 @@
         moveTo = "#" + move[1];
         //send the move to applyMove function
         game.applyMove(piece, moveFrom, moveTo);
-        console.log("final " + moveCounter);
+        // console.log("final " + moveCounter);
       };
       return;
     },
@@ -123,6 +124,15 @@
       };
       return;
     },
+    //step through the moves to the end. will use end function but needs a delay between moves
+    //to show all the moves. the pause portion will get a little tricky.
+    play: function(){ //still cant get the moves to slow down
+      while(moveCounter < moves.length){
+        window.setTimeout(game.next(),2000);
+      };
+      return;
+    },
+
     /**
      * Provide a printable representation of the game board for use as a tracer
      *
@@ -157,10 +167,14 @@
       // console.log(piece);
       // console.log(from);
       // console.log(to);
+      $(".highlight").removeClass("highlight");
       //remove piece from the "from" spot
       $(from).removeClass();
       //add piece to the "to" spot
       $(to).addClass(piece);
+      //add class "highlight" to the to and from spaces
+      $(from).addClass("highlight");
+      $(to).addClass("highlight")
     }, // END applyMove
   }; // END game
 
