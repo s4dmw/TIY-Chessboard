@@ -113,10 +113,16 @@ table {
   border-collapse: separate;
 }
 
-thead {
+thead td {
   text-align: center;
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
 
+th {
+  padding-left: 5%;
+  padding-right: 5%;
+}
 
 tr.board td {
   background-color: lightgray;
