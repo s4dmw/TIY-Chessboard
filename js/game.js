@@ -21,7 +21,8 @@
 
    //short hand of opening moves...will start with a longer hand version in an object
   // var moves = [d4, nf6, e4, e6, g3, d5, bg2, be7]; // END moves
-    var moves = [["wp", "d2", "d4"], ["bn", "g8", "f6"]];
+    var moves = [["wp", "d2", "d4"], ["bn", "g8", "f6"], ["wp", "c2", "c4"], ["bp", "e7", "e6"],
+  ["wp", "g2", "g3"], ["bp", "d7", "d5"], ["wb", "f1", "g2"], ["bb", "f8", "e7"]];
     var moveCounter = 0; //counter to keep track of moves
     var move = []; //place holder for specific moves
     var piece = ""; //place holder for game pieces
@@ -49,10 +50,12 @@
      * @return {Object} the game object for Method Chaining
      */
     reset: function(){
-      console.log("reset function called");
-      board = initial();
-
-      return this;
+      // console.log("reset function called");
+      while(moveCounter > 0){
+        game.prev();
+      };
+      // board = initial();
+      return ;
     },
     /**
      * Advance the internal game board to the next move.
@@ -91,19 +94,20 @@
      */
     prev: function(){
       // console.log("prev function called");
-      if(moveCounter + 1 < moves.length){
-        return;
-      }
-      //decrease moveCounter by 1 to call the previous move
-      moveCounter--
-      //reverse move order
-      move = moves[moveCounter];
-      piece = move[0];
-      moveFrom = "#" + move[2];
-      moveTo = "#" + move[1];
-      //send the move to applyMove function
-      game.applyMove(piece, moveFrom, moveTo);
-
+      console.log("intial " + moveCounter);
+      if(moveCounter > 0){
+        //decrease moveCounter by 1 to call the previous move
+        moveCounter--
+        //reverse move order
+        move = moves[moveCounter];
+        piece = move[0];
+        moveFrom = "#" + move[2];
+        moveTo = "#" + move[1];
+        //send the move to applyMove function
+        game.applyMove(piece, moveFrom, moveTo);
+        console.log("final " + moveCounter);
+      };
+      return;
     },
     /**
      * Advance the internal game board to the last move.
@@ -112,8 +116,12 @@
      * @todo Make this work!
      */
     end: function(){
-      console.log("end function called");
-      return this;
+      // console.log("end function called");
+      //run game.next until you reach the last move
+      while(moveCounter < moves.length){
+        game.next();
+      };
+      return;
     },
     /**
      * Provide a printable representation of the game board for use as a tracer
