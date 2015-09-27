@@ -142,40 +142,40 @@ section.buttons {
 
 //assign pieces to board positions by their class names
 
-.black_pawn:before {
+.bp:before {
   content: "\265F";
 }
-.black_rook:before {
+.br:before {
   content: "\265C";
 }
-.black_night:before {
+.bn:before {
   content: "\265E";
 }
-.black_bishop:before {
+.bb:before {
   content: "\265D";
 }
-.black_queen:before {
+.bq:before {
   content: "\265B";
 }
-.black_king:before {
+.bk:before {
   content: "\265A";
 }
-.white_pawn:before {
+.wp:before {
   content: "\2659";
 }
-.white_rook:before {
+.wr:before {
   content: "\2656";
 }
-.white_night:before {
+.wn:before {
   content: "\2658";
 }
-.white_bishop:before {
+.wb:before {
   content: "\2657";
 }
-.white_queen:before {
+.wq:before {
   content: "\2655";
 }
-.white_king:before {
+.wk:before {
   content: "\2654";
 }
 

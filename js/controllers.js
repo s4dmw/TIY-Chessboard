@@ -21,6 +21,7 @@
   // Controller for "next move"...
   $("#forward").on('click', function(){
     console.log("clicked step forward button");
+    game.next();
     // TODO: Tell the Model -- `game` -- to advance to the next move...
     // TODO: Tell the View -- `.chessboard` -- to update the position of the pieces based on `game.board()`
   });
@@ -28,20 +29,23 @@
   // Controller for "previous move"...
   $("#back").on('click', function(){
     console.log("clicked on the step back button");
+    game.prev();
     // TODO: Tell the Model -- `game` -- to advance to the previous move...
     // TODO: Tell the View -- `.chessboard` -- to update the position of the pieces based on `game.board()`
   });
 
   // Controller for "fast-forward"...
-  $("#fast-forward").on('click', function(){
-    console.log("clicked on the fast forward button");
+  $("#end").on('click', function(){
+    console.log("clicked on the last move button");
+    game.end();
     // TODO: Tell the Model -- `game` -- to advance to the last move...
     // TODO: Tell the View -- `.chessboard` -- to update the position of the pieces based on `game.board()`
   });
 
   // Controller for "rewind"...
-  $("#rewind").on('click', function(){
-    console.log("clicked on the rewind button");
+  $("#reset").on('click', function(){
+    console.log("clicked on the reset button");
+    game.reset();
     // TODO: Tell the View -- `.chessboard` -- to update the position of the pieces based on `game.board()`
   });
 

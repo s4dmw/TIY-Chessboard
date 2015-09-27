@@ -18,9 +18,11 @@
    * @see applyMove
    * @var {Array} of...?
    */
-  var moves = [
-    // TODO: Fill me in!
-  ]; // END moves
+
+   //short hand of opening moves...will start with a longer hand version in an object
+  // var moves = [d4, nf6, e4, e6, g3, d5, bg2, be7]; // END moves
+    var moves = [["wp", "d2", "d4"], ["bk", "g7", "f6"]];
+
 
   // var current; TODO: do we need this?
 
@@ -42,6 +44,7 @@
      * @return {Object} the game object for Method Chaining
      */
     reset: function(){
+      console.log("reset function called");
       board = initial();
 
       return this;
@@ -53,8 +56,8 @@
      * @todo Make this work!
      */
     next: function(){
-      // Doesn't this seem to be missing something?
-      return this;
+      console.log("next function called"); //tracer bullet
+      // return this;
     },
     /**
      * Advance the internal game board to the previous move.
@@ -63,8 +66,8 @@
      * @todo Make this work!
      */
     prev: function(){
-      // Another good place for code...
-      return this;
+      console.log("prev function called");
+      // return this;
     },
     /**
      * Advance the internal game board to the last move.
@@ -73,7 +76,7 @@
      * @todo Make this work!
      */
     end: function(){
-      // Write some code here...
+      console.log("end function called");
       return this;
     },
     /**
@@ -105,7 +108,7 @@
      *
      * @todo Fill me in! ...and remove this comment.
      */
-    function applyMove(from, to){
+    applyMove: function(from, to){
       // You should write something in here...
     }, // END applyMove
   }; // END game
