@@ -125,6 +125,10 @@ tr.board td {
   // border: solid 1px;
 }
 
+td.highlight {
+  color: yellow;
+}
+
 tr.board:nth-child(odd) td:nth-child(odd) {
   background-color: gray;
 }
@@ -132,7 +136,6 @@ tr.board:nth-child(odd) td:nth-child(odd) {
 tr.board:nth-child(even) td:nth-child(even) {
   background-color: gray;
 }
-
 
 section.buttons {
   margin-top: 10pt;
