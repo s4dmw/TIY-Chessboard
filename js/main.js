@@ -97,16 +97,14 @@
     tracer: function(){
       var bullet = '';
 
-      for ( var rank = 0; rank < board.length; rank++ ){
+      for ( rank = 0; rank < board.length; rank++ ){
         bullet += '|';
         for ( var file = 0; file < board[rank].length; file++ ){
-          bullet += board[rank][file] || ' |';
+          bullet += (board[rank][file] || ' ') + '|';
         }
         bullet += '\n';
-      }
-
-      return bullet;
-    },
+      }      return bullet;
+  },
     /**
      * Apply a move to the game board, given a `from` and `to` position that both
      * contain values for `rank` and `file`.
