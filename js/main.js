@@ -20,6 +20,8 @@
    */
   var moves = [
     // TODO: Fill me in!
+    /* possible structure [from{ , }, to{ , }]
+    */
   ]; // END moves
 
   // var current; TODO: do we need this?
@@ -53,7 +55,11 @@
      * @todo Make this work!
      */
     next: function(){
-      // Doesn't this seem to be missing something?
+//based on the current move/counter call the applyMove function with the arguments
+// from and to for the next move in the moves array
+// if the game is at the last move, dont attempt advance the game any further
+// increase the game counter by one
+
       return this;
     },
     /**
@@ -63,7 +69,10 @@
      * @todo Make this work!
      */
     prev: function(){
-      // Another good place for code...
+//based on the current move/counter call the applyMove function with the arguments
+// from and to for the previous move in the moves array
+// if the game is at the start (game counter = 0), dont step back any further
+// decrease the game counter by one
       return this;
     },
     /**
@@ -73,7 +82,10 @@
      * @todo Make this work!
      */
     end: function(){
-      // Write some code here...
+//move from the current move/counter to the end of the game
+//loop through the next function until the game counter has reached the
+//last move (moves.length)
+
       return this;
     },
     /**
@@ -106,7 +118,9 @@
      * @todo Fill me in! ...and remove this comment.
      */
     applyMove: function(from, to){
-      // You should write something in here...
+//take the from and to arguments and apply them to the board
+//remove the piece in "from" spot and add it to the "to" spot
+
     } // END applyMove
   }; // END game
 
