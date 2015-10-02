@@ -10,7 +10,7 @@
    * @var {Array} of {Array} of {String|null}
    */
   var board = initial(); // initialize the `board`
-
+  var gameCounter = 0
   /**
    * List of moves for the "Catalan Opening: Closed Variation" suitable for use
    * as arguments to `applyMove` below.
@@ -48,7 +48,7 @@
      */
     reset: function(){
       board = initial();
-
+      gameCounter = 0;
       return this;
     },
     /**
@@ -62,7 +62,11 @@
 // from and to for the next move in the moves array
 // if the game is at the last move, dont attempt advance the game any further
 // increase the game counter by one
-      
+      var move = moves[gameCounter]
+      console.log(move);
+      game.applyMove(move[0], move[1], move[2], move[3]);
+      gameCounter ++
+
 
       return this;
     },

@@ -50,31 +50,48 @@
   it("should be able to move another piece", function(){
     //pre-condition - same as post of 1st move
     var board = game.board();
-    chai.expect(board[6][3]).to.be.null;
-    chai.expect(board[4][3]).to.be.equal('p');
+    chai.expect(board[2][5]).to.be.null;
+    chai.expect(board[0][6]).to.be.equal('N');
     //action
     game.applyMove(0, 6, 2, 5);
     //post-condition - after 2nd move
-    chai.expect(board[2][5]).to.be.null;
-    chai.expect(board[0][6]).to.be.equal('N');
+    var board = game.board();
+    chai.expect(board[0][6]).to.be.null;
+    chai.expect(board[2][5]).to.be.equal('N');
   });
 
 //tests for game.next
-  it("should be able to advance to the next move", function(){
+  it("should perform the first move", function(){
     chai.expect(game.next).to.exist;
     chai.expect(game.next).to.be.a('function');
-    // chai.expect(game.next()).to.be.an('object');
     //pre-condition
-    game.reset() //intialize the board
+    game.reset(); //intialize the board
     var board = game.board();
     chai.expect(board[6][3]).to.equal('p');
     chai.expect(board[4][3]).to.be.null;
     //action
     game.next();
     //post-condition
+    var board = game.board();
     chai.expect(board[6][3]).to.be.null;
     chai.expect(board[4][3]).to.be.equal('p');
   });
+
+  it("should perform the 2nd move", function(){
+    //pre-condition
+    game.reset();
+    var board = game.board();
+    chai.expect(board[2][5]).to.be.null;
+    chai.expect(board[0][6]).to.be.equal('N');
+    //action
+    game.next();
+    game.next();
+    //post-condition
+    var board = game.board();
+    chai.expect(board[0][6]).to.be.null;
+    chai.expect(board[2][5]).to.be.equal('N');
+  });
+
 
 //tests for game.previous
   it("should be able to return to the previous move", function(){
