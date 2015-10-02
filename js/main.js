@@ -18,8 +18,11 @@
    * @see applyMove
    * @var {Array} of...?
    */
-  var moves = [
+  var moves = [[6, 3, 4, 3], [0, 6, 2, 5]
     // TODO: Fill me in!
+
+    // game.applyMove({from:{rank: 6, file: 3}, to:{rank: 4, file: 3}});
+
     /* possible structure [from{ , }, to{ , }]
     */
   ]; // END moves
@@ -59,6 +62,7 @@
 // from and to for the next move in the moves array
 // if the game is at the last move, dont attempt advance the game any further
 // increase the game counter by one
+      
 
       return this;
     },
@@ -97,13 +101,15 @@
     tracer: function(){
       var bullet = '';
 
-      for ( rank = 0; rank < board.length; rank++ ){
+      for ( var rank = 0; rank < board.length; rank++ ){
         bullet += '|';
         for ( var file = 0; file < board[rank].length; file++ ){
           bullet += (board[rank][file] || ' ') + '|';
         }
         bullet += '\n';
-      }      return bullet;
+      }
+
+      return bullet;
   },
     /**
      * Apply a move to the game board, given a `from` and `to` position that both
@@ -115,9 +121,16 @@
      *
      * @todo Fill me in! ...and remove this comment.
      */
-    applyMove: function(from, to){
+    applyMove: function(fromRank, fromFile, toRank, toFile){
 //take the from and to arguments and apply them to the board
 //remove the piece in "from" spot and add it to the "to" spot
+    // console.log("applyMove tracer");
+    // console.log(fromRank, fromFile, toRank, toFile);
+    // console.log("applyMove tracer 2");
+
+    board[toRank][toFile] = board[fromRank][fromFile];
+    board[fromRank][fromFile] = null;
+
 
     } // END applyMove
   }; // END game
