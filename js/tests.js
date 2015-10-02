@@ -124,7 +124,17 @@
   it("should be able to advance to the end of the game", function(){
     chai.expect(game.end).to.exist;
     chai.expect(game.end).to.be.a('function');
-    chai.expect(game.end()).to.be.an('object');
+    // chai.expect(game.end()).to.be.an('object');
+    //pre condition: start of game
+    game.reset() //intialize the board
+    var board = game.board();
+    chai.expect(board[6][3]).to.equal('p');
+    chai.expect(board[4][3]).to.be.null;
+    //action
+    game.end();
+    var board = game.board();
+    chai.expect(board[5][5]).to.equal('n');
+    chai.expect(board[7][6]).to.be.null;
   });
 
 //tests for the tracer function

@@ -18,7 +18,8 @@
    * @see applyMove
    * @var {Array} of...?
    */
-  var moves = [[6, 3, 4, 3], [0, 6, 2, 5]
+  var moves = [[6, 3, 4, 3], [0, 6, 2, 5], [6, 2, 4, 2], [1, 4, 2, 4],
+    [6, 6, 5, 6], [1, 3, 3, 3], [7, 5, 6, 6], [0, 5, 1, 4], [7, 6, 5, 5]
     // TODO: Fill me in!
 
     // game.applyMove({from:{rank: 6, file: 3}, to:{rank: 4, file: 3}});
@@ -96,7 +97,10 @@
 //move from the current move/counter to the end of the game
 //loop through the next function until the game counter has reached the
 //last move (moves.length)
-
+      while(gameCounter < moves.length){
+        // console.log(game.tracer());
+        game.next();
+      };
       return this;
     },
     /**
