@@ -97,7 +97,26 @@
   it("should be able to return to the previous move", function(){
     chai.expect(game.prev).to.exist;
     chai.expect(game.prev).to.be.a('function');
-    chai.expect(game.prev()).to.be.an('object');
+    // chai.expect(game.prev()).to.be.an('object');
+    //pre-condition (after 2nd move)
+    var board = game.board();
+    chai.expect(board[6][3]).to.be.null;
+    chai.expect(board[4][3]).to.be.equal('p');
+    chai.expect(board[0][6]).to.be.null;
+    chai.expect(board[2][5]).to.be.equal('N');
+    //action
+    game.prev();
+    //post-condition
+    var board = game.board();
+    chai.expect(board[2][5]).to.be.null;
+    chai.expect(board[0][6]).to.be.equal('N');
+    //action call game.prev again
+    game.prev();
+    //post-condition
+    var board = game.board();
+    chai.expect(board[6][3]).to.equal('p');
+    chai.expect(board[4][3]).to.be.null;
+
   });
 
 
