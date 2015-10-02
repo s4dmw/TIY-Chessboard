@@ -1,0 +1,100 @@
+body {
+   color: black;
+   margin-left: 5%;
+   margin-right: 5%;
+   margin-bottom: 5%;
+   margin-top: 5%;
+}
+
+header {
+  text-align: center;
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+
+thead td {
+  text-align: center;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+th {
+  // padding-left: 5%;
+  // padding-right: 5%;
+}
+
+tr.board td {
+  background-color: lightgray;
+  height: 60pt;
+  width: 60pt;
+  // border: solid 1px;
+}
+
+td.highlight {
+  color: yellow;
+}
+
+tr.board:nth-child(odd) td:nth-child(odd) {
+  background-color: gray;
+}
+
+tr.board:nth-child(even) td:nth-child(even) {
+  background-color: gray;
+}
+
+section.buttons {
+  margin-top: 10pt;
+  text-align: center;
+}
+
+
+
+//assign pieces to board positions by their class names
+
+.bp:before {
+  content: "\265F";
+}
+.br:before {
+  content: "\265C";
+}
+.bn:before {
+  content: "\265E";
+}
+.bb:before {
+  content: "\265D";
+}
+.bq:before {
+  content: "\265B";
+}
+.bk:before {
+  content: "\265A";
+}
+.wp:before {
+  content: "\2659";
+}
+.wr:before {
+  content: "\2656";
+}
+.wn:before {
+  content: "\2658";
+}
+.wb:before {
+  content: "\2657";
+}
+.wq:before {
+  content: "\2655";
+}
+.wk:before {
+  content: "\2654";
+}
+
+//set size/position of pieces
+::before {
+  font-size: 40pt;
+  margin-left: 10pt;
+}
