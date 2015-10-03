@@ -63,11 +63,12 @@
 // from and to for the next move in the moves array
 // if the game is at the last move, dont attempt advance the game any further
 // increase the game counter by one
-      var move = moves[gameCounter]
-      // console.log(move);
-      game.applyMove(move[0], move[1], move[2], move[3]);
-      gameCounter ++
-
+      if (gameCounter < moves.length){
+        var move = moves[gameCounter]
+        // console.log(move);
+        game.applyMove(move[0], move[1], move[2], move[3]);
+        gameCounter ++
+      };
       return this;
     },
     /**
@@ -81,10 +82,11 @@
 // from and to for the previous move in the moves array
 // if the game is at the start (game counter = 0), dont step back any further
 // decrease the game counter by one
-    gameCounter --;
-    var move = moves[gameCounter];
-    game.applyMove(move[2], move[3], move[0], move[1]);
-
+    if (gameCounter > 0){
+      gameCounter --;
+      var move = moves[gameCounter];
+      game.applyMove(move[2], move[3], move[0], move[1]);
+    };
       return this;
     },
     /**
