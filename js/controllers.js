@@ -20,42 +20,42 @@
   update.view();// display the intial state of the board
 
   $("#next").on('click', function(){
-    console.log("clicked next move button");
+    // console.log("clicked next move button");
     game.next();
-    console.log(game.tracer());
+    // console.log(game.tracer());
     update.view();
   });
 
   // Controller for "previous move"...
   $("#back").on('click', function(){
-    console.log("clicked on the prev move button");
+    // console.log("clicked on the prev move button");
     game.prev();
-    console.log(game.tracer());
+    // console.log(game.tracer());
     update.view();
   });
 
   // Controller for "fast-forward"...
   $("#end").on('click', function(){
-    console.log("clicked on the last move button");
+    // console.log("clicked on the last move button");
     game.end();
-    console.log(game.tracer());
+    // console.log(game.tracer());
     update.view();
   });
 
   // Controller for "rewind"...
   $("#reset").on('click', function(){
-    console.log("clicked on the reset button");
+    // console.log("clicked on the reset button");
     game.reset();
-    console.log(game.tracer());
+    // console.log(game.tracer());
     update.view();
   });
 
   //controller for "play/pause"
   $("#play").on('click', function(){
-    console.log("clicked on the play/pause button");
+    // console.log("clicked on the play/pause button");
     // game.play(); //TODO: add the play/pause feature
     game.end();
-    console.log(game.tracer());
+    // console.log(game.tracer());
     update.view();
   });
 
