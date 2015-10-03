@@ -16,14 +16,14 @@
   //   // Do something with Models and Views...
   //   // Maybe do something with EVENT...?
   // }
-
-
   // Controller for "next move"...
+  update.view();// display the intial state of the board
+
   $("#next").on('click', function(){
     console.log("clicked next move button");
     game.next();
     console.log(game.tracer());
-    // TODO: Tell the View -- `.chessboard` -- to update the position of the pieces based on `game.board()`
+    update.view();
   });
 
   // Controller for "previous move"...
@@ -31,7 +31,7 @@
     console.log("clicked on the prev move button");
     game.prev();
     console.log(game.tracer());
-    // TODO: Tell the View -- `.chessboard` -- to update the position of the pieces based on `game.board()`
+    update.view();
   });
 
   // Controller for "fast-forward"...
@@ -39,7 +39,7 @@
     console.log("clicked on the last move button");
     game.end();
     console.log(game.tracer());
-    // TODO: Tell the View -- `.chessboard` -- to update the position of the pieces based on `game.board()`
+    update.view();
   });
 
   // Controller for "rewind"...
@@ -47,7 +47,7 @@
     console.log("clicked on the reset button");
     game.reset();
     console.log(game.tracer());
-    // TODO: Tell the View -- `.chessboard` -- to update the position of the pieces based on `game.board()`
+    update.view();
   });
 
   //controller for "play/pause"
@@ -56,6 +56,7 @@
     // game.play(); //TODO: add the play/pause feature
     game.end();
     console.log(game.tracer());
+    update.view();
   });
 
 
