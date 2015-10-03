@@ -54,12 +54,12 @@
   var playButton = true;
   $("#play").on('click', function(){
     if (playButton) {
-      console.log("clicked play");
+      // console.log("clicked play");
       game.play(true);
       playButton = false;
       return;
     };
-    console.log("clicked pause");
+    // console.log("clicked pause");
     game.play(false);
     playButton = true;
   })
