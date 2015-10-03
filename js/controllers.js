@@ -55,18 +55,16 @@
   $("#play").on('click', function(){
     if (playButton) {
       console.log("clicked play");
+      game.play(true);
       playButton = false;
       return;
     };
     console.log("clicked pause");
+    game.play(false);
     playButton = true;
   })
 
 
-    // game.play(); //TODO: add the play/pause feature
-    // game.end();
-    // console.log(game.tracer());
-    // update.view();
 
 
 // Am I supposed to recognize this?

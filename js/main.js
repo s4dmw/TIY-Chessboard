@@ -10,7 +10,10 @@
    * @var {Array} of {Array} of {String|null}
    */
   var board = initial(); // initialize the `board`
-  var gameCounter = 0
+  var gameCounter = 0;
+
+
+
   /**
    * List of moves for the "Catalan Opening: Closed Variation" suitable for use
    * as arguments to `applyMove` below.
@@ -101,10 +104,47 @@
 //last move (moves.length)
       while(gameCounter < moves.length){
         // console.log(game.tracer());
+        // console.log(gameCounter);
         game.next();
       };
       return this;
     },
+    /* function to step through the game with an interval
+    */
+    play: function(buttonStatus){
+      console.log("called the play/pause function");
+      var movesRemaining = moves.length - gameCounter;
+      console.log(buttonStatus);
+      console.log(timeoutID);
+      var timeoutID;
+      if(buttonStatus){
+        function delayedPlay() {
+          timeoutID = setTimeout(slowPlay, 1000 * i);
+        }
+        console.log("called the play function");
+
+        function slowPlay() {
+          console.log(timeoutID);
+          game.next();
+          console.log(game.tracer());
+          update.view();
+        };
+
+        for (var i = 0; i < movesRemaining; i++) {
+          delayedPlay();
+        };
+      }
+      else {
+          console.log("called the pause function");
+          clearTimeout(timeoutID);
+          console.log(timeoutID);
+      };
+
+
+
+    },
+
+
     /**
      * Provide a printable representation of the game board for use as a tracer
      *
