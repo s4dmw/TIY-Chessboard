@@ -47,9 +47,11 @@
     *
     */
     moves: function(gameSelection){
-      console.log("game selected: " + gameSelection);
+      // console.log("game selected: " + gameSelection);
+      // console.log("apis/"+gameSelection+"/moves.json");
       $.ajax("apis/"+gameSelection+"/moves.json").then(function(){
        moves = arguments[0].moves});
+      //  console.log(moves);
     },
     /**
      * Provide a _copy_ of the game board in order to update the View from it

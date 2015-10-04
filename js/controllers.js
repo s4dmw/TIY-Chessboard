@@ -23,7 +23,11 @@
   $("#game").change(function(){
     // console.log("selected: " + this.value);
     //only calls the function if the user makes a selection
-    if(this.value !== "none") {game.moves(this.value)};
+    if(this.value !== "none") {
+      game.moves(this.value);
+      game.reset(); //resets the game
+      update.view(); //updates the view
+    };
     // console.log(gameSelection);
 
   });
