@@ -1,4 +1,8 @@
+//have to let a few variables escape in to the wild so the other js files can see them
+//there has to be a better way?!?!
 var highlightIndex;
+var gameCounter = 0;
+var gameLength = 0;
 
 (function(globals){
 // Don't worry if that seems a little funky...
@@ -12,7 +16,7 @@ var highlightIndex;
    * @var {Array} of {Array} of {String|null}
    */
   var board = initial(); // initialize the `board`
-  var gameCounter = 0;
+
 
   /**
    * List of moves for the "Catalan Opening: Closed Variation" suitable for use
@@ -37,6 +41,7 @@ var highlightIndex;
      {from:{rank: 7, file: 6}, to:{rank: 5, file: 5}}
    ]; //end moves
 
+   gameLength = moves.length //set the gameLength based on default game
 
   // You don't need to understand `globals` yet...
   var game = globals.game = {
@@ -46,7 +51,10 @@ var highlightIndex;
     */
     moves: function(gameSelection){
       $.ajax("apis/"+gameSelection+"/moves.json").then(function(){
-       moves = arguments[0].moves});
+       moves = arguments[0].moves
+       gameLength = moves.length; //set the game length based on the selected game
+     });
+
     }, // end moves function
 
     /**
@@ -128,7 +136,7 @@ var highlightIndex;
       return this;
     }, //end end function...hehe
 
-    
+
 
     /**
      * Provide a printable representation of the game board for use as a tracer

@@ -18,12 +18,17 @@
       game.reset(); //resets the game
       update.view(); //updates the view
       $('td').removeClass("highlight"); //clear highlights
+      pause(); //if the game is playing, i want it to pause
+      playButtonStatus = true; //reset game button status
     };
+
   });
 
 
   // Controller for "next move"...
   $("#next").on('click', function(){
+    pause(); //if the game is playing, i want it to pause
+    playButtonStatus = true; //reset game button status
     game.next();
     update.view();
   });
@@ -31,6 +36,8 @@
 
   // Controller for "previous move"...
   $("#back").on('click', function(){
+    pause(); //if the game is playing, i want it to pause
+    playButtonStatus = true; //reset game button status
     game.prev();
     update.view();
   });
@@ -38,6 +45,8 @@
 
   // Controller for "fast-forward"...
   $("#end").on('click', function(){
+    pause(); //if the game is playing, i want it to pause
+    playButtonStatus = true; //reset game button status
     game.end();
     update.view();
   });
@@ -45,24 +54,15 @@
 
   // Controller for "rewind"...
   $("#reset").on('click', function(){
+    pause(); //if the game is playing, i want it to pause
+    playButtonStatus = true; //reset game button status
     game.reset();
     update.view();
+    $('td').removeClass("highlight"); //clear highlights
   });
 
 
-  // //controller for "play/pause"
-  // var playButton = true;
-  // $("#play").on('click', function(){
-  //   if (playButton) {
-  //     // console.log("clicked play");
-  //     game.play(true);
-  //     playButton = false;
-  //     return;
-  //   };
-  //   // console.log("clicked pause");
-  //   game.play(false);
-  //   playButton = true;
-  // });
+
 
   //controller for "play/pause"  - 2nd try
     var playButtonStatus = true;
@@ -71,12 +71,13 @@
       if (playButtonStatus) {
           console.log("clicked play");
           play();
-          playButtonStatus = false;
+          playButtonStatus = false; //change button status so it will pause if you
+          //push it again
           return;
       };
       console.log("clicked pause");
       pause();
-      playButtonStatus = true;
+      playButtonStatus = true; //reset button status so it will play if you push it again
       });
 
 
@@ -87,9 +88,15 @@
 
       function playStep(){
         console.log("play step");
-        game.next();
-        update.view();
-        //need to pause/stop when it gets to last move
+        console.log(gameCounter);
+        console.log(gameLength);
+        if(gameCounter<gameLength){ //only let the play run until it gets to the end
+          game.next();
+          update.view();
+          return
+        };
+        pause();
+        playButtonStatus = true;
       };
 
       function pause() {
