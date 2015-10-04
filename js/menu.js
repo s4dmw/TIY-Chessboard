@@ -6,8 +6,26 @@
 
   // console.log("menu.js loaded and ready for action"); //tracer to make sure it's loaded
 
-  $("select#game").append('<option value="catalan">Catalan Opening: Closed Variation</option>');
-  $("select#game").append('<option value="stonewall">Stonewall Attack</option>');
+  //need to get a list of games from games.json
+  $.ajax("apis/games.json").then(function(){
+    // console.log("ajax tracer");
+    games = arguments[0];
+    // console.log(games[0]); //tracer
+    // console.log(games[1]); //tracer
+    $.each(games, function(value){
+      // console.log(games[value].id); //tracer
+      // console.log(games[value].name); //tracer
+       $("select#game").append('<option value='+games[value].id+'>'+games[value].name+'</option>');
+    });
+  });
+
+
+
+
+  // $("select#game").append('<option value='+option1+'>Catalan Opening: Closed Variation</option>');
+  // $("select#game").append('<option value='+option2+'>Stonewall Attack</option>');
+
+
 
 
 

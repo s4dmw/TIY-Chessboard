@@ -12,8 +12,6 @@
   var board = initial(); // initialize the `board`
   var gameCounter = 0;
 
-
-
   /**
    * List of moves for the "Catalan Opening: Closed Variation" suitable for use
    * as arguments to `applyMove` below.
@@ -21,11 +19,10 @@
    * @see applyMove
    * @var {Array} of...?
    */
-   //trying use games.json to get the moves
-   var moves =[]
+   //trying use moves.json to get the moves
 
-
-  //  var moves = [
+   var moves =[]; //intialize the moves variable
+  //  var moves = [ //moves for Catalan opening
   //    {from:{rank: 6, file: 3}, to:{rank: 4, file: 3}},
   //    {from:{rank: 0, file: 6}, to:{rank: 2, file: 5}},
   //    {from:{rank: 6, file: 2}, to:{rank: 4, file: 2}},
@@ -36,7 +33,6 @@
   //    {from:{rank: 0, file: 5}, to:{rank: 1, file: 4}},
   //    {from:{rank: 7, file: 6}, to:{rank: 5, file: 5}}
   //  ]; //end moves
-
 
 
 
