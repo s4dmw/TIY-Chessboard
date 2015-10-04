@@ -1,3 +1,5 @@
+var highlightIndex;
+
 (function(globals){
 // Don't worry if that seems a little funky...
 
@@ -199,6 +201,10 @@
     board[toRank][toFile] = board[fromRank][fromFile];
     board[fromRank][fromFile] = null;
 
+    //asign the index of the move so view-helpers can highlight the spot
+    // yes it's convoluted
+    highlightIndex = toRank*8+toFile;
+    // console.log(highlightIndex);
 
     } // END applyMove
   }; // END game

@@ -12,6 +12,10 @@ var update = globals.update = {
     // I always start variable names with `$` when they reference `jQuery.Collection` values
     var gameboard = game.board();
 
+    //use toRank and toFile to 'eq' the nth element in the jQuery and high light it
+    // console.log(highlightIndex);
+    $("tbody tr td").eq(highlightIndex).addClass("highlight");
+
     // You could also use nested `for` loops, but this is better...
     jQuery(gameboard).each(function(rank, row){
       jQuery(row).each(function(file, piece){

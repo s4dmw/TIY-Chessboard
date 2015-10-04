@@ -26,9 +26,9 @@ table {
   tbody td {
     background-color: lightgray;
   }
-  // td.highlight {
-  //   color: yellow;
-  // }
+  td.highlight {
+    color: yellow;
+  }
   tbody tr:nth-child(odd) td:nth-child(odd) {
     background-color: gray;
   }
