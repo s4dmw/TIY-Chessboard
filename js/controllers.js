@@ -19,10 +19,12 @@
   // Controller for "next move"...
   update.view();// display the intial state of the board
 
+ //load an opening based on the selection for the drop down menu
   $("#game").change(function(){
     // console.log("selected: " + this.value);
-    gameSelection = this.value;
+    game.moves(this.value);
     // console.log(gameSelection);
+
   });
 
   $("#next").on('click', function(){

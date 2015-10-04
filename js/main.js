@@ -22,9 +22,7 @@
    * @var {Array} of...?
    */
    //trying use games.json to get the moves
-   var moves
-   $.ajax("apis/games.json").then(function(){
-    moves = arguments[0].moves});
+   var moves =[]
 
 
   //  var moves = [
@@ -44,6 +42,15 @@
 
   // You don't need to understand `globals` yet...
   var game = globals.game = {
+    /**grab the moves from games.json based on the menu selction
+    *
+    *
+    */
+    moves: function(gameSelection){
+      console.log("game selected: " + gameSelection);
+      $.ajax("apis/"+gameSelection+"/moves.json").then(function(){
+       moves = arguments[0].moves});
+    },
     /**
      * Provide a _copy_ of the game board in order to update the View from it
      *
