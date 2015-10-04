@@ -22,7 +22,8 @@
  //load an opening based on the selection for the drop down menu
   $("#game").change(function(){
     // console.log("selected: " + this.value);
-    game.moves(this.value);
+    //only calls the function if the user makes a selection
+    if(this.value !== "none") {game.moves(this.value)};
     // console.log(gameSelection);
 
   });
