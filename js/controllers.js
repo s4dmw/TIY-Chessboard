@@ -67,15 +67,12 @@
   //controller for "play/pause"  - 2nd try
     var playButtonStatus = true;
     $("#play").on('click', function(){
-      console.log("clicked play/pause");
       if (playButtonStatus) {
-          console.log("clicked play");
           play();
           playButtonStatus = false; //change button status so it will pause if you
           //push it again
           return;
       };
-      console.log("clicked pause");
       pause();
       playButtonStatus = true; //reset button status so it will play if you push it again
       });
@@ -87,9 +84,6 @@
       };
 
       function playStep(){
-        console.log("play step");
-        console.log(gameCounter);
-        console.log(gameLength);
         if(gameCounter<gameLength){ //only let the play run until it gets to the end
           game.next();
           update.view();
