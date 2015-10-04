@@ -5,11 +5,9 @@ var update = globals.update = {
 
     // Because the game board only corresponds to the `tbody` element...
     var $chessboard = $("tbody");
-    $('td').removeClass(); //clears the board so it can be re-populated
-    // console.log("view tracer");
-    // console.log($chessboard);
-    // console.log($chessboard);
     // I always start variable names with `$` when they reference `jQuery.Collection` values
+
+    $('td').removeClass(); //clears the board so it can be re-populated
     var gameboard = game.board();
 
     //use toRank and toFile to 'eq' the nth element in the jQuery and high light it
@@ -21,11 +19,7 @@ var update = globals.update = {
       jQuery(row).each(function(file, piece){
         // http://stackoverflow.com/questions/1442925/how-to-get-nth-jquery-element
         var $square = $chessboard.find('tr').eq(rank).find('td').eq(file);
-        // console.log($square.get(), rank, file, piece);
-        // Use the log, Luke!
-        // $square.text(piece)
         if (piece){
-          // console.log(rank, file, piece);
           $square.addClass(piece); //puts the pieces in their squares
         };
       });

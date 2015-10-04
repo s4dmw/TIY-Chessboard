@@ -7,61 +7,47 @@
    * 3. What `CALLBACK` should be run when the interaction happens?
    * 4. What should my `CALLBACK` do with it's `EVENT`...?
    */
-  // document.querySelector(SELECTOR)
-  //   .addEventListener(TYPE, CALLBACK);
-  // // AKA
-  // jQuery(SELECTOR).on(TYPE, CALLBACK);
-  // // Where CALLBACK is...
-  // function CALLBACK (EVENT){
-  //   // Do something with Models and Views...
-  //   // Maybe do something with EVENT...?
-  // }
-  // Controller for "next move"...
+
   update.view();// display the intial state of the board
 
  //load an opening based on the selection for the drop down menu
   $("#game").change(function(){
-    // console.log("selected: " + this.value);
     //only calls the function if the user makes a selection
     if(this.value !== "none") {
       game.moves(this.value);
       game.reset(); //resets the game
       update.view(); //updates the view
     };
-    // console.log(gameSelection);
-
   });
 
+
+  // Controller for "next move"...
   $("#next").on('click', function(){
-    // console.log("clicked next move button");
     game.next();
-    // console.log(game.tracer());
     update.view();
   });
+
 
   // Controller for "previous move"...
   $("#back").on('click', function(){
-    // console.log("clicked on the prev move button");
     game.prev();
-    // console.log(game.tracer());
     update.view();
   });
+
 
   // Controller for "fast-forward"...
   $("#end").on('click', function(){
-    // console.log("clicked on the last move button");
     game.end();
-    // console.log(game.tracer());
     update.view();
   });
 
+
   // Controller for "rewind"...
   $("#reset").on('click', function(){
-    // console.log("clicked on the reset button");
     game.reset();
-    // console.log(game.tracer());
     update.view();
   });
+
 
   //controller for "play/pause"
   var playButton = true;
@@ -76,8 +62,6 @@
     game.play(false);
     playButton = true;
   })
-
-
 
 
 // Am I supposed to recognize this?

@@ -38,20 +38,17 @@ var highlightIndex;
    ]; //end moves
 
 
-
   // You don't need to understand `globals` yet...
   var game = globals.game = {
+
+
     /**grab the moves from games.json based on the menu selction
-    *
-    *
     */
     moves: function(gameSelection){
-      // console.log("game selected: " + gameSelection);
-      // console.log("apis/"+gameSelection+"/moves.json");
       $.ajax("apis/"+gameSelection+"/moves.json").then(function(){
        moves = arguments[0].moves});
-      //  console.log(moves);
-    },
+    }, // end moves function
+
     /**
      * Provide a _copy_ of the game board in order to update the View from it
      *
@@ -61,7 +58,8 @@ var highlightIndex;
       return board.map(function(row){
         return row.slice();
       });
-    },
+    }, //end board function
+
     /**
      * Reset the internal game board to it's initial state.
      *
@@ -71,63 +69,68 @@ var highlightIndex;
       board = initial();
       gameCounter = 0;
       return this;
-    },
+    }, //end reset function
+
     /**
      * Advance the internal game board to the next move.
      *
      * @return {Object} the game object for Method Chaining
      * @todo Make this work!
      */
+     //based on the current move/counter call the applyMove function with the arguments
+     // from and to for the next move in the moves array
+     // if the game is at the last move, dont attempt advance the game any further
+     // increase the game counter by one
+
     next: function(){
-//based on the current move/counter call the applyMove function with the arguments
-// from and to for the next move in the moves array
-// if the game is at the last move, dont attempt advance the game any further
-// increase the game counter by one
       if (gameCounter < moves.length){
         var move = moves[gameCounter]
-        // console.log(move);
         game.applyMove(move.from.rank, move.from.file, move.to.rank, move.to.file);
         gameCounter ++
       };
       return this;
-    },
+    }, // end next function
+
     /**
      * Advance the internal game board to the previous move.
      *
      * @return {Object} the game object for Method Chaining
      * @todo Make this work!
      */
+     //based on the current move/counter call the applyMove function with the arguments
+     // from and to for the previous move in the moves array
+     // if the game is at the start (game counter = 0), dont step back any further
+     // decrease the game counter by one
+
     prev: function(){
-//based on the current move/counter call the applyMove function with the arguments
-// from and to for the previous move in the moves array
-// if the game is at the start (game counter = 0), dont step back any further
-// decrease the game counter by one
     if (gameCounter > 0){
       gameCounter --;
       var move = moves[gameCounter];
       game.applyMove(move.to.rank, move.to.file, move.from.rank, move.from.file);
     };
       return this;
-    },
+    }, //end prev function
+
     /**
      * Advance the internal game board to the last move.
      *
      * @return {Object} the game object for Method Chaining
      * @todo Make this work!
      */
+     //move from the current move/counter to the end of the game
+     //loop through the next function until the game counter has reached the
+     //last move (moves.length)
+
     end: function(){
-//move from the current move/counter to the end of the game
-//loop through the next function until the game counter has reached the
-//last move (moves.length)
       while(gameCounter < moves.length){
-        // console.log(game.tracer());
-        // console.log(gameCounter);
         game.next();
       };
       return this;
-    },
+    }, //end end function...hehe
+
     /* function to step through the game with an interval
-    */
+     * currently plays but doesnt pause
+     */
     play: function(buttonStatus){
       // console.log("called the play/pause function");
       var movesRemaining = moves.length - gameCounter;
@@ -139,14 +142,12 @@ var highlightIndex;
           timeoutID = setTimeout(slowPlay, 1000 * i);
         }
         // console.log("called the play function");
-
         function slowPlay() {
           // console.log(timeoutID);
           game.next();
           // console.log(game.tracer());
           update.view();
         };
-
         for (var i = 0; i < movesRemaining; i++) {
           delayedPlay();
         };
@@ -156,10 +157,7 @@ var highlightIndex;
           clearTimeout(timeoutID);
           // console.log(timeoutID);
       };
-
-
-
-    },
+    }, //end wonky play function
 
 
     /**
@@ -170,7 +168,6 @@ var highlightIndex;
      */
     tracer: function(){
       var bullet = '';
-
       for ( var rank = 0; rank < board.length; rank++ ){
         bullet += '|';
         for ( var file = 0; file < board[rank].length; file++ ){
@@ -178,9 +175,9 @@ var highlightIndex;
         }
         bullet += '\n';
       }
-
       return bullet;
-  },
+  }, // tracer function
+
     /**
      * Apply a move to the game board, given a `from` and `to` position that both
      * contain values for `rank` and `file`.
@@ -189,14 +186,12 @@ var highlightIndex;
      * @param {Object} to with `rank` and `file`
      * @return undefined
      *
-     * @todo Fill me in! ...and remove this comment.
      */
+     //take the from and to arguments and apply them to the board
+     //remove the piece in "from" spot and add it to the "to" spot
+
     applyMove: function(fromRank, fromFile, toRank, toFile){
-//take the from and to arguments and apply them to the board
-//remove the piece in "from" spot and add it to the "to" spot
-    // console.log("applyMove tracer");
-    // console.log(fromRank, fromFile, toRank, toFile);
-    // console.log("applyMove tracer 2");
+
 
     board[toRank][toFile] = board[fromRank][fromFile];
     board[fromRank][fromFile] = null;
@@ -204,7 +199,6 @@ var highlightIndex;
     //asign the index of the move so view-helpers can highlight the spot
     // yes it's convoluted
     highlightIndex = toRank*8+toFile;
-    // console.log(highlightIndex);
 
     } // END applyMove
   }; // END game
