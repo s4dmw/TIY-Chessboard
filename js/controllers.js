@@ -17,6 +17,7 @@
       game.moves(this.value);
       game.reset(); //resets the game
       update.view(); //updates the view
+      $('td').removeClass("highlight"); //clear highlights
     };
   });
 
