@@ -50,19 +50,53 @@
   });
 
 
-  //controller for "play/pause"
-  var playButton = true;
-  $("#play").on('click', function(){
-    if (playButton) {
-      // console.log("clicked play");
-      game.play(true);
-      playButton = false;
-      return;
-    };
-    // console.log("clicked pause");
-    game.play(false);
-    playButton = true;
-  })
+  // //controller for "play/pause"
+  // var playButton = true;
+  // $("#play").on('click', function(){
+  //   if (playButton) {
+  //     // console.log("clicked play");
+  //     game.play(true);
+  //     playButton = false;
+  //     return;
+  //   };
+  //   // console.log("clicked pause");
+  //   game.play(false);
+  //   playButton = true;
+  // });
+
+  //controller for "play/pause"  - 2nd try
+    var playButtonStatus = true;
+    $("#play").on('click', function(){
+      console.log("clicked play/pause");
+      if (playButtonStatus) {
+          console.log("clicked play");
+          play();
+          playButtonStatus = false;
+          return;
+      };
+      console.log("clicked pause");
+      pause();
+      playButtonStatus = true;
+      });
+
+
+      var nIntervId; //intialize the interval ID
+      function play(){
+          nIntervId = setInterval(playStep, 1000);
+      };
+
+      function playStep(){
+        console.log("play step");
+        game.next();
+        update.view();
+        //need to pause/stop when it gets to last move
+      };
+
+      function pause() {
+        clearInterval(nIntervId);
+      };
+
+
 
 
 // Am I supposed to recognize this?
