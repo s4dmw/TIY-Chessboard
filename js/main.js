@@ -21,18 +21,19 @@
    */
    //trying use moves.json to get the moves
 
-   var moves =[]; //intialize the moves variable
-  //  var moves = [ //moves for Catalan opening
-  //    {from:{rank: 6, file: 3}, to:{rank: 4, file: 3}},
-  //    {from:{rank: 0, file: 6}, to:{rank: 2, file: 5}},
-  //    {from:{rank: 6, file: 2}, to:{rank: 4, file: 2}},
-  //    {from:{rank: 1, file: 4}, to:{rank: 2, file: 4}},
-  //    {from:{rank: 6, file: 6}, to:{rank: 5, file: 6}},
-  //    {from:{rank: 1, file: 3}, to:{rank: 3, file: 3}},
-  //    {from:{rank: 7, file: 5}, to:{rank: 6, file: 6}},
-  //    {from:{rank: 0, file: 5}, to:{rank: 1, file: 4}},
-  //    {from:{rank: 7, file: 6}, to:{rank: 5, file: 5}}
-  //  ]; //end moves
+
+//leaving Catalan moves in as default so you dont have to run browser-sync
+   var moves = [
+     {from:{rank: 6, file: 3}, to:{rank: 4, file: 3}},
+     {from:{rank: 0, file: 6}, to:{rank: 2, file: 5}},
+     {from:{rank: 6, file: 2}, to:{rank: 4, file: 2}},
+     {from:{rank: 1, file: 4}, to:{rank: 2, file: 4}},
+     {from:{rank: 6, file: 6}, to:{rank: 5, file: 6}},
+     {from:{rank: 1, file: 3}, to:{rank: 3, file: 3}},
+     {from:{rank: 7, file: 5}, to:{rank: 6, file: 6}},
+     {from:{rank: 0, file: 5}, to:{rank: 1, file: 4}},
+     {from:{rank: 7, file: 6}, to:{rank: 5, file: 5}}
+   ]; //end moves
 
 
 
