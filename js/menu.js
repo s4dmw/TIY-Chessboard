@@ -6,6 +6,8 @@
 
   // console.log("menu.js loaded and ready for action"); //tracer to make sure it's loaded
 
+  $("select#game").append('<option value="catalan">Catalan Opening: Closed Variation</option>');
+  $("select#game").append('<option value="stonewall">Stonewall Attack</option>');
 
 
 
