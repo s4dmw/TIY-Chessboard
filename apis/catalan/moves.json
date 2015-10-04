@@ -1,5 +1,6 @@
 {
-    "id": "Catalan Opening: Closed Variation",
+    "id": "catalan",
+    "name": "Catalan Opening: Closed Variation",
     "moves": [
       {"from":{"rank": 6, "file": 3}, "to":{"rank": 4, "file": 3}},
       {"from":{"rank": 0, "file": 6}, "to":{"rank": 2, "file": 5}},
