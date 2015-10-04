@@ -19,6 +19,12 @@
   // Controller for "next move"...
   update.view();// display the intial state of the board
 
+  $("#game").change(function(){
+    // console.log("selected: " + this.value);
+    gameSelection = this.value;
+    // console.log(gameSelection);
+  });
+
   $("#next").on('click', function(){
     // console.log("clicked next move button");
     game.next();

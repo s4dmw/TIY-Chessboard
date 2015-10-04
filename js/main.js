@@ -23,9 +23,9 @@
    */
    //trying use games.json to get the moves
    var moves
-   $.ajax("games.json").then(function(){
+   $.ajax("apis/games.json").then(function(){
     moves = arguments[0].moves});
-    
+
 
   //  var moves = [
   //    {from:{rank: 6, file: 3}, to:{rank: 4, file: 3}},
