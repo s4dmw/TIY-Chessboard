@@ -1,3 +1,9 @@
+//have to let a few variables escape in to the wild so the other js files can see them
+//there has to be a better way?!?!
+var highlightIndex;
+var gameCounter = 0;
+var gameLength = 0;
+
 (function(globals){
 // Don't worry if that seems a little funky...
 
@@ -11,6 +17,7 @@
    */
   var board = initial(); // initialize the `board`
 
+
   /**
    * List of moves for the "Catalan Opening: Closed Variation" suitable for use
    * as arguments to `applyMove` below.
@@ -18,16 +25,38 @@
    * @see applyMove
    * @var {Array} of...?
    */
-  var moves = [
-    // TODO: Fill me in!
-    /* possible structure [from{ , }, to{ , }]
-    */
-  ]; // END moves
+   //trying use moves.json to get the moves
 
-  // var current; TODO: do we need this?
+
+//leaving Catalan moves in as default so you dont have to run browser-sync
+   var moves = [
+     {from:{rank: 6, file: 3}, to:{rank: 4, file: 3}},
+     {from:{rank: 0, file: 6}, to:{rank: 2, file: 5}},
+     {from:{rank: 6, file: 2}, to:{rank: 4, file: 2}},
+     {from:{rank: 1, file: 4}, to:{rank: 2, file: 4}},
+     {from:{rank: 6, file: 6}, to:{rank: 5, file: 6}},
+     {from:{rank: 1, file: 3}, to:{rank: 3, file: 3}},
+     {from:{rank: 7, file: 5}, to:{rank: 6, file: 6}},
+     {from:{rank: 0, file: 5}, to:{rank: 1, file: 4}},
+     {from:{rank: 7, file: 6}, to:{rank: 5, file: 5}}
+   ]; //end moves
+
+   gameLength = moves.length //set the gameLength based on default game
 
   // You don't need to understand `globals` yet...
   var game = globals.game = {
+
+
+    /**grab the moves from games.json based on the menu selction
+    */
+    moves: function(gameSelection){
+      $.ajax("apis/"+gameSelection+"/moves.json").then(function(){
+       moves = arguments[0].moves
+       gameLength = moves.length; //set the game length based on the selected game
+     });
+
+    }, // end moves function
+
     /**
      * Provide a _copy_ of the game board in order to update the View from it
      *
@@ -37,7 +66,8 @@
       return board.map(function(row){
         return row.slice();
       });
-    },
+    }, //end board function
+
     /**
      * Reset the internal game board to it's initial state.
      *
@@ -45,49 +75,69 @@
      */
     reset: function(){
       board = initial();
-
+      gameCounter = 0;
       return this;
-    },
+    }, //end reset function
+
     /**
      * Advance the internal game board to the next move.
      *
      * @return {Object} the game object for Method Chaining
      * @todo Make this work!
      */
-    next: function(){
-//based on the current move/counter call the applyMove function with the arguments
-// from and to for the next move in the moves array
-// if the game is at the last move, dont attempt advance the game any further
-// increase the game counter by one
+     //based on the current move/counter call the applyMove function with the arguments
+     // from and to for the next move in the moves array
+     // if the game is at the last move, dont attempt advance the game any further
+     // increase the game counter by one
 
+    next: function(){
+      if (gameCounter < moves.length){
+        var move = moves[gameCounter]
+        game.applyMove(move.from.rank, move.from.file, move.to.rank, move.to.file);
+        gameCounter ++
+      };
       return this;
-    },
+    }, // end next function
+
     /**
      * Advance the internal game board to the previous move.
      *
      * @return {Object} the game object for Method Chaining
      * @todo Make this work!
      */
+     //based on the current move/counter call the applyMove function with the arguments
+     // from and to for the previous move in the moves array
+     // if the game is at the start (game counter = 0), dont step back any further
+     // decrease the game counter by one
+
     prev: function(){
-//based on the current move/counter call the applyMove function with the arguments
-// from and to for the previous move in the moves array
-// if the game is at the start (game counter = 0), dont step back any further
-// decrease the game counter by one
+    if (gameCounter > 0){
+      gameCounter --;
+      var move = moves[gameCounter];
+      game.applyMove(move.to.rank, move.to.file, move.from.rank, move.from.file);
+    };
       return this;
-    },
+    }, //end prev function
+
     /**
      * Advance the internal game board to the last move.
      *
      * @return {Object} the game object for Method Chaining
      * @todo Make this work!
      */
-    end: function(){
-//move from the current move/counter to the end of the game
-//loop through the next function until the game counter has reached the
-//last move (moves.length)
+     //move from the current move/counter to the end of the game
+     //loop through the next function until the game counter has reached the
+     //last move (moves.length)
 
+    end: function(){
+      while(gameCounter < moves.length){
+        game.next();
+      };
       return this;
-    },
+    }, //end end function...hehe
+
+
+
     /**
      * Provide a printable representation of the game board for use as a tracer
      *
@@ -96,15 +146,16 @@
      */
     tracer: function(){
       var bullet = '';
-
-      for ( rank = 0; rank < board.length; rank++ ){
+      for ( var rank = 0; rank < board.length; rank++ ){
         bullet += '|';
         for ( var file = 0; file < board[rank].length; file++ ){
           bullet += (board[rank][file] || ' ') + '|';
         }
         bullet += '\n';
-      }      return bullet;
-  },
+      }
+      return bullet;
+  }, // tracer function
+
     /**
      * Apply a move to the game board, given a `from` and `to` position that both
      * contain values for `rank` and `file`.
@@ -113,11 +164,19 @@
      * @param {Object} to with `rank` and `file`
      * @return undefined
      *
-     * @todo Fill me in! ...and remove this comment.
      */
-    applyMove: function(from, to){
-//take the from and to arguments and apply them to the board
-//remove the piece in "from" spot and add it to the "to" spot
+     //take the from and to arguments and apply them to the board
+     //remove the piece in "from" spot and add it to the "to" spot
+
+    applyMove: function(fromRank, fromFile, toRank, toFile){
+
+
+    board[toRank][toFile] = board[fromRank][fromFile];
+    board[fromRank][fromFile] = null;
+
+    //asign the index of the move so view-helpers can highlight the spot
+    // yes it's convoluted
+    highlightIndex = toRank*8+toFile;
 
     } // END applyMove
   }; // END game

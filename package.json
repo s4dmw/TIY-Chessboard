@@ -13,6 +13,7 @@
   "scripts": {
     "test": "mocha",
     "bs" : "browser-sync start --server --files='*.html, js/*.js, css/*.css'",
+    "test" : "browser-sync start --server --index='tests.html' --files='*.html, js/*.js, css/*.css'",
     "sass" : "node-sass --output-style expanded scss/main.scss css/main.css"
   },
   "repository": {

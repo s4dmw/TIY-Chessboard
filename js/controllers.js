@@ -7,53 +7,97 @@
    * 3. What `CALLBACK` should be run when the interaction happens?
    * 4. What should my `CALLBACK` do with it's `EVENT`...?
    */
-  // document.querySelector(SELECTOR)
-  //   .addEventListener(TYPE, CALLBACK);
-  // // AKA
-  // jQuery(SELECTOR).on(TYPE, CALLBACK);
-  // // Where CALLBACK is...
-  // function CALLBACK (EVENT){
-  //   // Do something with Models and Views...
-  //   // Maybe do something with EVENT...?
-  // }
+
+  update.view();// display the intial state of the board
+
+ //load an opening based on the selection for the drop down menu
+  $("#game").change(function(){
+    //only calls the function if the user makes a selection
+    if(this.value !== "none") {
+      game.moves(this.value);
+      game.reset(); //resets the game
+      update.view(); //updates the view
+      $('td').removeClass("highlight"); //clear highlights
+      pause(); //if the game is playing, i want it to pause
+      playButtonStatus = true; //reset game button status
+    };
+
+  });
 
 
   // Controller for "next move"...
   $("#next").on('click', function(){
-    // console.log("clicked next move button");
+    pause(); //if the game is playing, i want it to pause
+    playButtonStatus = true; //reset game button status
     game.next();
-    // TODO: Tell the Model -- `game` -- to advance to the next move...
-    // TODO: Tell the View -- `.chessboard` -- to update the position of the pieces based on `game.board()`
+    update.view();
   });
+
 
   // Controller for "previous move"...
   $("#back").on('click', function(){
-    // console.log("clicked on the prev move button");
+    pause(); //if the game is playing, i want it to pause
+    playButtonStatus = true; //reset game button status
     game.prev();
-    // TODO: Tell the Model -- `game` -- to advance to the previous move...
-    // TODO: Tell the View -- `.chessboard` -- to update the position of the pieces based on `game.board()`
+    update.view();
   });
+
 
   // Controller for "fast-forward"...
   $("#end").on('click', function(){
-    // console.log("clicked on the last move button");
+    pause(); //if the game is playing, i want it to pause
+    playButtonStatus = true; //reset game button status
     game.end();
-    // TODO: Tell the Model -- `game` -- to advance to the last move...
-    // TODO: Tell the View -- `.chessboard` -- to update the position of the pieces based on `game.board()`
+    update.view();
   });
+
 
   // Controller for "rewind"...
   $("#reset").on('click', function(){
-    // console.log("clicked on the reset button");
+    pause(); //if the game is playing, i want it to pause
+    playButtonStatus = true; //reset game button status
     game.reset();
-    // TODO: Tell the View -- `.chessboard` -- to update the position of the pieces based on `game.board()`
+    update.view();
+    $('td').removeClass("highlight"); //clear highlights
   });
 
-  //controller for "play/pause"
-  $("#play").on('click', function(){
-    // console.log("clicked on the play/pause button");
-    game.play();
-  });
+
+
+
+  //controller for "play/pause"  - 2nd try
+    var playButtonStatus = true;
+    $("#play").on('click', function(){
+      if (playButtonStatus) {
+          play();
+          playButtonStatus = false; //change button status so it will pause if you
+          //push it again
+          return;
+      };
+      pause();
+      playButtonStatus = true; //reset button status so it will play if you push it again
+      });
+
+
+      var nIntervId; //intialize the interval ID
+      function play(){
+          nIntervId = setInterval(playStep, 1000);
+      };
+
+      function playStep(){
+        if(gameCounter<gameLength){ //only let the play run until it gets to the end
+          game.next();
+          update.view();
+          return
+        };
+        pause();
+        playButtonStatus = true;
+      };
+
+      function pause() {
+        clearInterval(nIntervId);
+      };
+
+
 
 
 // Am I supposed to recognize this?
