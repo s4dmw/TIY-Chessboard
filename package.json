@@ -1,0 +1,29 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "",
+  "main": "BasicCalculator.js",
+  "dependencies": {
+    "chai": "^3.2.0",
+    "mocha": "^2.3.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "bs" : "browser-sync start --server --files='*.html, js/*.js, css/*.css'",
+    "test" : "browser-sync start --server --index='tests.html' --files='*.html, js/*.js, css/*.css'",
+    "sass" : "node-sass --output-style expanded scss/main.scss css/main.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s4dmw/TIY-Assignments.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/s4dmw/TIY-Assignments/issues"
+  },
+  "homepage": "https://github.com/s4dmw/TIY-Assignments#readme"
+}
